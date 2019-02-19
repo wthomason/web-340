@@ -2,6 +2,6 @@
 WEB-340 Node.js
 
 
-# contributors
-Professor Krasso    - Bellevue University
+# Contributors
+Professor Krasso    - Bellevue University  
 William T. Thomason - Bellevue University
