@@ -4,7 +4,7 @@
 ; File Name: thomason-exercise-1.3.js
 ; Author: William Thomason
 ; Date:   19 February 2019
-; Description: Duck Typing, A.K.A “Interfaces”
+; Description: Modules
 ;===========================================
 */
 
