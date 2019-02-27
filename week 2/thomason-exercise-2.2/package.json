@@ -1,7 +1,7 @@
 {
     "name": "hello-world",
     "author": "William Thomason",
-    "modified by": "William Thomason",
+    "modified_by": "William Thomason",
     "private": true,
     "dependencies": {
         "express": "^4.16.4"
