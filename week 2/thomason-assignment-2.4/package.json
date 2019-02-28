@@ -1,0 +1,10 @@
+{
+    "name": "ejs-view",
+    "author": "William Thomason",
+    "modified_by": "William Thomason",
+    "private": true,
+    "dependencies": {
+        "ejs": "^2.6.1",
+        "express": "^4.16.4"
+    }
+}
