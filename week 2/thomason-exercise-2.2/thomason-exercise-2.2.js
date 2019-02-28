@@ -9,7 +9,7 @@
 */
 
 //HEADER
-const header = require('../thomason-header.js');
+const header = require('../../thomason-header.js');
 console.log(header.display("William", "Thomason", "Exercise 2.2") + "\n");
 
 //Start of program
