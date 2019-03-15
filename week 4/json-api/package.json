@@ -1,0 +1,12 @@
+{
+  "name": "json-api",
+  "author": "William Thomason",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node thomason-exercise-4.2.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
