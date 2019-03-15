@@ -15,9 +15,9 @@ console.log(header.display("William", "Thomason", "Assignment 4.4") + "\n");
 //START PROGRAM
 
 //REQUIRING EXPRESS AND HTTP
-var express = require(express);
+var express = require('express');
 
-var http = require(http);
+var http = require('http');
 
 //SETTING EXPRESS TO VARIABLE app
 var app = express();
