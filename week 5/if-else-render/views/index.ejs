@@ -27,14 +27,12 @@
       </ul>
     </nav>
 
-    <!-- start of code -->
     <div role="main" class="container">
       <br/><br/>
 
       <h2>Names List</h2>
 
-      <!-- if -->
-      <% if (names.length > 0) { %>
+      <% if (names.length > 0) { %> <!-- if -->
 
         <% for (var k = 0; k < names.length; k++) { %>
             <div class="alert alert-success" role="alert"><strong><%= names[k] %></strong></div>
@@ -42,9 +40,7 @@
 
       <% } %> <!-- end if -->
 
-
-
-  </div>
+    </div>
 
   </body>
 </html>
