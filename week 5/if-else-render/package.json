@@ -1,0 +1,13 @@
+{
+  "name": "if-else-render",
+  "author": "William Thomason",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node thomason-exercise-5.2.js"
+  },
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}
