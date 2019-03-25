@@ -26,6 +26,7 @@ var app = express();
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(express.static(__dirname + '/public'));
 
 app.use(logger("short"));
 
@@ -33,7 +34,8 @@ app.use(logger("short"));
 app.get("/", function (request, response) {
     response.render("index", {
 
-        title: "Home page"
+        title: "Home page",
+        message: "Home page"
 
     });
 });
