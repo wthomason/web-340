@@ -1,3 +1,41 @@
+html, body {
+    background-color: #fff;
+    scroll-behavior: smooth;
+  }
+
+  #landing {
+    background-image: url(../images/levi-saunders-71728-unsplash.jpg);
+    background-repeat: no-repeat;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .above {
+    z-index: 1000;
+  }
+
+  .logoBackground{
+    background-color: rgb(153, 153, 153, 0.5);
+    color:black !important;
+    border-radius: 8px;
+    margin-top: 10rem;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 60px;
+    padding: 1rem;
+    }
+    
 footer{
     background-color: gray;
     height: 100px;
