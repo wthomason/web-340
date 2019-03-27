@@ -13,14 +13,15 @@ const header = require('../../thomason-header.js');
 console.log(header.display("William", "Thomason", "Exercise 6.3") + "\n");
 
 //start program
+var express = require("express");
+var http = require("http");
+var logger = require("morgan");
+var mongoose = require("mongoose");
 
-var mongoose = require(“mongoose”);
-var mongoDB = " mLab connection string>";
+var mongoDB = "mongodb+srv://web340:webdev340@ems-wrvq5.mongodb.net/test?retryWrites=true";
 
 
-mongoose.connect(mongoDB, {
-    useMongoClient: true
-});
+mongoose.connect(mongoDB);
 
 
 mongoose.Promise = global.Promise;
@@ -31,6 +32,13 @@ db.on("error", console.error.bind(console, "MongoDB connected error: "));
 
 db.once("open", function() {
     console.log("Application connected to mLab MongoDB instance");
+});
+
+var app = express();
+app.use(logger('dev'));
+
+http.createServer(app).listen(5000, function(){
+    console.log("Application started on port 5000");
 });
 
 //END PROGRAM
