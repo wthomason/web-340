@@ -34,8 +34,9 @@ app.use(logger("short"));
 app.get("/", function (request, response) {
     response.render("index", {
 
-        title: "Home page",
-        message: "Home page"
+        title: "Hunting Camp",
+        message: "Welcome to Hunting Camp",
+        headingTitle: "Hunting Camp Were You Find All Things Hunting"
 
     });
 });
