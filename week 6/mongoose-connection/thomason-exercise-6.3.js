@@ -21,7 +21,9 @@ var mongoose = require("mongoose");
 var mongoDB = "mongodb+srv://web340:webdev340@ems-wrvq5.mongodb.net/test?retryWrites=true";
 
 
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, {
+    useMongoClient: true
+});
 
 
 mongoose.Promise = global.Promise;
