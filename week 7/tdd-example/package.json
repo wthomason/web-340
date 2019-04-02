@@ -1,0 +1,13 @@
+{
+  "name": "tdd-in-action",
+  "author": "William Thomason",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
+}
