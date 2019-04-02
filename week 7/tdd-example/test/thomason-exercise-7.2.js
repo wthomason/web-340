@@ -1,3 +1,18 @@
+/*
+============================================
+; Title:  Exercise 7.2
+; File Name: thomason-exercise-7.2.js
+; Author: William Thomason
+; Date:   25 March 2019
+; Description: TDD in action
+;===========================================
+*/
+
+//HEADER
+const header = require('../../../thomason-header.js');
+console.log(header.display("William", "Thomason", "Exercise 7.2") + "\n");
+
+//start program
 var assert = require("assert");
 
 describe("String#split", function() {
@@ -18,3 +33,4 @@ function getFruits(str) {
    }
 
    module.exports = getFruits;
+//end program
