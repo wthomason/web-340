@@ -96,7 +96,7 @@ app.get("/new", function (request, response) {
     });
 });
 
-app.post("/new", function(request, response) {
+app.post("/process", function(request, response) {
 
     console.log(request);
     console.log(request.csrfToken);
