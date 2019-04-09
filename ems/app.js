@@ -24,6 +24,13 @@ var path = require("path");
 var logger = require("morgan");
 var helmet = require("helmet");
 var mongoose = require("mongoose");
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+var csrf = require("csurf");
+
+
+// setup csrf protection
+var csrfProtection = csrf({cookie: true});
 
 //mongoDB conection string
 var mongoDB = "mongodb+srv://web340:webdev340@ems-wrvq5.mongodb.net/test?retryWrites=true";
@@ -37,9 +44,28 @@ var app = express();
  */
 //useing exprss dirname to public for custom javascript files and css files
 app.use(express.static(__dirname + '/public'));
+
 app.use(helmet.xssFilter());
+
 //setting the morgan logger settings
 app.use(logger("short"));
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(cookieParser());
+
+app.use(csrfProtection);
+
+app.use(function(request, response, next) {
+    var token = request.csrfToken();
+
+    response.cookie('XSRF-TOKEN', token);
+    response.locals.csrfToken = token;
+
+    next();
+});
 
 
 /*
@@ -63,13 +89,28 @@ app.get("/", function (request, response) {
     });
 });
 
+app.get("/new", function (request, response) {
+    response.render("new", {
+        title: "Hunting Camp",
+        message: "Add New Employee"
+    });
+});
+
+app.post("/new", function(request, response) {
+
+    console.log(request);
+    console.log(request.csrfToken);
+    response.redirect("/");
+
+});
+
+
 /*
- *Conecting to mongoDB  
+ *CONECTING TO mongoDB  
  */
 mongoose.connect(mongoDB, {
     useMongoClient: true
 });
-
 
 mongoose.Promise = global.Promise;
 
@@ -81,7 +122,9 @@ db.once("open", function() {
     console.log("Application connected to mLab MongoDB instance");
 });
 
-//Create server
+
+
+//CREATE SERVER
 http.createServer(app).listen(8080, function() {
 
     console.log("Application started on port 8080!");
