@@ -15,30 +15,44 @@ console.log(header.display("William", "Thomason", "EMS") + "\n");
 //PROGRAM START
 
 /*
- *SETTING VARIABLES  
+ *SETTING VARIABLES
+ *require statements  
  */
 var express = require("express");
 var http = require("http");
 var path = require("path");
 var logger = require("morgan");
+var helmet = require("helmet");
 var mongoose = require("mongoose");
 
 //mongoDB conection string
 var mongoDB = "mongodb+srv://web340:webdev340@ems-wrvq5.mongodb.net/test?retryWrites=true";
 
+// initialize express
 var app = express();
 
+
+/*
+ *USE STATEMENTS  
+ */
+//useing exprss dirname to public for custom javascript files and css files
+app.use(express.static(__dirname + '/public'));
+app.use(helmet.xssFilter());
+//setting the morgan logger settings
+app.use(logger("short"));
+
+
+/*
+ *SET STATEMENTS  
+ */
 //setting pat of view for tpl files and view engine as ejs
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 
-//useing exprss dirname to public for custom javascript files and css files
-app.use(express.static(__dirname + '/public'));
 
-//setting the morgan logger settings
-app.use(logger("short"));
-
-//Routes 
+/*
+ *ROUTES  
+ */ 
 app.get("/", function (request, response) {
     response.render("index", {
 
