@@ -116,29 +116,31 @@ app.get("/new", function (request, response) {
 });
 
 app.post("/process", function(request, response) {
-  // console.log(request.body.txtName);
-  if (!request.body.txtName) {
-    response.status(400).send("Entries must have a name");
-    return;
-  }
 
    // get the request's form data
-   var employeeName = request.body.txtName;
-   console.log(employeeName);
+   var employeeFirstName = request.body.txtFirstName;
+   var employeeLastName = request.body.txtLastName;
+
+   console.log(employeeFirstName + " " + employeeLastName);
 
    // create a employee model
    var employee = new Employee({
-       name: employeeName
+       firstName: employeeFirstName,
+       lastName: employeeLastName
    });
 
    // save
    employee.save(function (error) {
-       if (error) throw error;
-
-       console.log(employeeName + " saved successfully!");
+       if (error){
+          throw error;
+          console.log(error);
+       }
+       else{
+       console.log(employeeFirstName + " " + employeeLastName + " saved successfully!");
+       }
    });
-    console.log(request);
-    console.log(request.csrfToken);
+    //console.log(request);
+    //console.log(request.csrfToken);
     response.redirect("/");
 
 });
@@ -149,7 +151,8 @@ app.get("/list", function(request, response) {
 
      response.render("list", {
       title: "Hunting Camp",
-      message: "Employee List"
+      message: "Employee List",
+      employee: employee
      });
   });
 });
