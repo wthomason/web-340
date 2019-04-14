@@ -16,12 +16,13 @@ console.log(header.display("William", "Thomason", "EMS") + "\n");
 
 /*
  *SETTING VARIABLES
- *require statements  
+ *require statements
  */
 var express = require("express");
 var http = require("http");
 var path = require("path");
 var logger = require("morgan");
+var Employee = require("./models/employee");
 var helmet = require("helmet");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
@@ -40,7 +41,7 @@ var app = express();
 
 
 /*
- *USE STATEMENTS  
+ *USE STATEMENTS
  */
 //useing exprss dirname to public for custom javascript files and css files
 app.use(express.static(__dirname + '/public'));
@@ -69,7 +70,7 @@ app.use(function(request, response, next) {
 
 
 /*
- *SET STATEMENTS  
+ *SET STATEMENTS
  */
 //setting pat of view for tpl files and view engine as ejs
 app.set("views", path.resolve(__dirname, "views"));
@@ -77,8 +78,26 @@ app.set("view engine", "ejs");
 
 
 /*
- *ROUTES  
- */ 
+ *CONECTING TO mongoDB
+ */
+mongoose.connect(mongoDB, {
+  useMongoClient: true
+});
+
+mongoose.Promise = global.Promise;
+
+var db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "MongoDB connected error: "));
+
+db.once("open", function() {
+  console.log("Application connected to mLab MongoDB instance");
+});
+
+
+/*
+ *ROUTES
+ */
 app.get("/", function (request, response) {
     response.render("index", {
 
@@ -97,31 +116,43 @@ app.get("/new", function (request, response) {
 });
 
 app.post("/process", function(request, response) {
+  // console.log(request.body.txtName);
+  if (!request.body.txtName) {
+    response.status(400).send("Entries must have a name");
+    return;
+  }
 
+   // get the request's form data
+   var employeeName = request.body.txtName;
+   console.log(employeeName);
+
+   // create a employee model
+   var employee = new Employee({
+       name: employeeName
+   });
+
+   // save
+   employee.save(function (error) {
+       if (error) throw error;
+
+       console.log(employeeName + " saved successfully!");
+   });
     console.log(request);
     console.log(request.csrfToken);
     response.redirect("/");
 
 });
 
+app.get("/list", function(request, response) {
+  Employee.find({}, function(error, employee) {
+     if (error) throw error;
 
-/*
- *CONECTING TO mongoDB  
- */
-mongoose.connect(mongoDB, {
-    useMongoClient: true
+     response.render("list", {
+      title: "Hunting Camp",
+      message: "Employee List"
+     });
+  });
 });
-
-mongoose.Promise = global.Promise;
-
-var db = mongoose.connection;
-
-db.on("error", console.error.bind(console, "MongoDB connected error: "));
-
-db.once("open", function() {
-    console.log("Application connected to mLab MongoDB instance");
-});
-
 
 
 //CREATE SERVER
