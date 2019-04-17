@@ -157,6 +157,32 @@ app.get("/list", function(request, response) {
   });
 });
 
+app.get("/view/:queryName", function (request, response) {
+
+    var queryName = request.params.queryName;
+
+    Employee.find({'firstName': queryName}, function(error, employee) {
+
+        if (error) throw error;
+
+        console.log(employee);
+
+        if (employee.length > 0) {
+
+            response.render("view", {
+                title: "Hunting Camp",
+                message: "Employee Record",
+                employee: employee
+
+            })
+        }
+
+        else {
+            response.redirect("/list")
+        }
+    });
+});
+
 
 //CREATE SERVER
 http.createServer(app).listen(8080, function() {

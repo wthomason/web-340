@@ -1,0 +1,25 @@
+<% include header %>
+
+<% include navbar %>
+
+<div role="main" class="container">
+    <br/><br/>
+
+    <h2>-- Employee Record --</h2>
+
+        <div class="form-group">
+
+            <h4 for="txtName">Name: <span style="font-weight: bold;"><%= employee[0].firstName %> <%= employee[0].lastName %></span></h4>
+    
+        </div>
+
+    <br /><br />
+
+    <a href="/list">Return to Employee List</a>
+
+</div>
+
+</div>
+
+<% include footer %>
+<% include scripts %>
