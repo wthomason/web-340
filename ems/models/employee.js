@@ -9,8 +9,8 @@
 */
 
 //HEADER
-const header = require('../../thomason-header.js');
-console.log(header.display("William", "Thomason", "EMS") + "\n");
+//const header = require('../thomason-header.js');
+//console.log(header.display("William", "Thomason", "EMS") + "\n");
 
 //PROGRAM START
 

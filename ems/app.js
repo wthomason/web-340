@@ -9,8 +9,8 @@
 */
 
 //HEADER
-const header = require('../thomason-header.js');
-console.log(header.display("William", "Thomason", "EMS") + "\n");
+//const header = require("thomason-header.js");
+//console.log(header.display("William", "Thomason", "EMS") + "\n");
 
 //PROGRAM START
 
@@ -75,7 +75,7 @@ app.use(function(request, response, next) {
 //setting pat of view for tpl files and view engine as ejs
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
-
+app.set("port", process.env.PORT || 8080);
 
 /*
  *CONECTING TO mongoDB
@@ -185,10 +185,8 @@ app.get("/view/:queryName", function (request, response) {
 
 
 //CREATE SERVER
-http.createServer(app).listen(8080, function() {
-
-    console.log("Application started on port 8080!");
-
+http.createServer(app).listen(app.get("port"), function() {
+  console.log("Application started on port " + app.get("port"));
 });
 
 //PROGRAM END
